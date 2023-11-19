@@ -1,5 +1,5 @@
 {% set name = "hidefix" %}
-{% set version = "0.8.0" %}
+{% set version = "0.9.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/hidefix-{{ version }}.tar.gz
-  sha256: a9162d5f881e4b9890d8852f543b85e77ab565ae6b52bfe7420e64002fa3a5ed
+  sha256: 228cf0748279546047eda25acb90b4fdaa344ad4d37b36e34c74d5558498172a
 
 build:
   number: 0
