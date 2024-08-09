@@ -1,5 +1,5 @@
 {% set name = "hidefix" %}
-{% set version = "0.9.0" %}
+{% set version = "0.10.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,14 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/hidefix-{{ version }}.tar.gz
-  sha256: 228cf0748279546047eda25acb90b4fdaa344ad4d37b36e34c74d5558498172a
+  sha256: 3e5dcff7a86425e41d5e54d3caeffd70402055eab723d9663c486409db3db97c
 
 build:
   number: 0
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - {{ PYTHON }} -m pip install . -vv
+  skip: true  # [py<39]
 
 requirements:
   build:
@@ -24,20 +25,20 @@ requirements:
     - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - maturin >=1.3,<1.4                  # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('rust') }}
     - cargo-bundle-licenses
   host:
     - python
     - pip
-    - maturin >=0.15,<0.16
+    - maturin >=1.3,<1.4
   run:
     - python
     - xz
     - numpy
     - xarray
     - netCDF4
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 test:
   source_files:
