@@ -1,5 +1,5 @@
 {% set name = "hidefix" %}
-{% set version = "0.11.1" %}
+{% set version = "0.12.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/hidefix-{{ version }}.tar.gz
-  sha256: 3cb5ba49308dcd4533d660111647d033316f4507d89e309b428f842bfda350dc
+  sha256: a049519ee6650f8a656aee9a9af1f140dd15bdf85bd314e3fa1855c099c211c2
 
 build:
-  number: 1
+  number: 0
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - {{ PYTHON }} -m pip install . -vv
